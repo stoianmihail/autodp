@@ -325,6 +325,7 @@ class AmplificationBySampling(Transformer):
             newmech.replace_one = False
 
         else:  # if we want subset subsampled DP
+            print(f'mechanism.neighboring={mechanism.neighboring}')
             assert mechanism.neighboring != 'add_remove', "mechanism's add-remove notion of DP is " \
                                                    "incompatible with Privacy Amplification " \
                                                    "by subsampling without replacements"
