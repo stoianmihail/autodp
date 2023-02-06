@@ -146,7 +146,9 @@ def rdp_to_approxdp(rdp, alpha_max=np.inf, BBGHS_conversion=True):
                     else:
                         return np.log(1 / delta) / (x - 1) + rdp(x)
 
-            results = minimize_scalar(fun, method='Brent', bracket=(1,2), bounds=[1, alpha_max])
+            # Note: this line had specified the `bounds` parameter.
+            # However, scipy does not longer accept them (see https://github.com/astropy/astropy/pull/14232)
+            results = minimize_scalar(fun, method='Brent', bracket=(1,2))
             if results.success:
                 return results.fun
             else:
